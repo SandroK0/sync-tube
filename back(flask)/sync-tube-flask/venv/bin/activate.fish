@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/sandro/Desktop/sync-tube-flask/venv"
+set -gx VIRTUAL_ENV "/home/sandro/Desktop/SyncTube/back(flask)/sync-tube-flask/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

@@ -1,4 +1,4 @@
-#!/home/sandro/Desktop/sync-tube-flask/venv/bin/python3
+#!/home/sandro/Desktop/SyncTube/back(flask)/sync-tube-flask/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
