@@ -1,235 +1,100 @@
-/* Reset some default styles for better consistency */
-.body, h1, p, input, button {
-  margin: 0;
-  padding: 0;
-  border: none;
-  outline: none;
-  font-family: Arial, sans-serif;
-}
+
+
 
 .body {
-  font-size: 16px;
-  background-color: #0a0a0a;
-  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
-  margin: 0;
-}
-
-.header {
-  background-color: #1a1a1a;
-  color: #ffffff;
-  padding: 20px;
-  text-align: center;
-}
-
-.logo {
-  font-size: 36px;
-  font-weight: bold;
-}
-
-.roomName {
-  font-size: 18px;
-  margin-top: 10px;
-}
-
-.btn{
-  padding: 10px 20px;
-  background-color: #00bcd4;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 18px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.btn:hover{
-  background-color: #0097a7;
-
+  background-color: #f0f0f0;
+  font-family:"Ubuntu";
 }
 
 .main {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap:20px;
-
-  text-align: center;
+  width: fit-content;
   padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  gap:5px;
 }
 
 .videoInput {
-  margin-bottom: 20px;
-}
-
-input.smallInput[type="text"] {
-  width: 200px;
-  padding: 10px;
-  margin-right: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-
-.roomContent {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-
-  gap:20px;
-}
-
-.blackDiv {
-  background-color: #000;
-  width: 1000px;
-  min-height: 500px;
-}
-
-.playerBox{
   display: flex;
   flex-direction: column;
-  gap:5px;
 }
 
-.chatBox {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-
-
-  background-color: #1a1a1a;
-  color: #fff;
-  width: 300px;
+.smallInput {
+  width: 100%;
   padding: 10px;
+  margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  overflow-y: auto;
-  height: 630px;
-  max-height: 630px;
 }
 
-.message {
-  display: flex;
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 5px;
-  white-space: pre-line;
-  word-break:break-all;
-  font-size: 16px;
-}
-
-.inputBox{
-  display: flex;
-  gap:5px;
-}
-
-.inputBox input{
-
-  border: 1px solid #ccc;
-  background-color: #1a1a1a;
-  border-radius: 5px;
-  color: #ccc;
-
-  padding: 4px;
-  font-size: 15px;
-  width: 300px;
-}
-
-.inputBox button{
-
-  padding: 4px;
-  font-size: 15px;
-  width: 50px;
-
-  background-color: #00bcd4;
-  color: #fff;
+.btn {
+  width: 100%;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: #ffffff; 
   border: none;
   border-radius: 5px;
-  font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.inputBox button:hover{
-  background-color: #0097a7;
-
+.btn:hover {
+  background-color: #0056b3;
 }
 
-footer {
-  background-color: #1a1a1a;
-  color: #00bcd4;
-  text-align: center;
-  padding: 20px;
+.roomContent {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
-.roomInfo{
+.roomInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0px 10px;
+
+  width: 100%;
+  height: 50px;
   border: 1px solid #ccc;
-  
 }
 
-
-@media screen and (max-width: 1600px) {
-
-  .inputBox input{
-    width: 250px;
-    font-size: 15px;
-  }
-  .btn{
-    font-size: 15px;
-  }
-
-  .roomContent{
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .body{
-    height: 120vh;
-  }
-
-  .chatBox{
-    height: 200px;
-    width: 800px;
-  }
-
-  
+.memberList{
+  display: flex;
+  gap:5px
 }
 
+.memberList div{
+  background-color: #eeeeee;
+  padding: 5px;
+  border-radius: 5px;
+}
 
+@media screen and (min-width: 768px) {
+  .videoInput {
+    flex-direction: row;
+  }
 
-@media screen and (max-width: 900px) {
-
-
-  input.smallInput[type="text"] {
-    width: 200px;
-    padding: 10px;
+  .smallInput {
+    width: calc(50% - 5px); 
+    margin-bottom: 0;
     margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 10px;
   }
 
-  .btn{
-    font-size: 10px;
+  .btn {
+    width: calc(50% - 5px);
+    margin-left: 10px;
   }
 
-  .roomContent{
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  .roomContent {
+    flex-direction: row;
   }
-
-  .body{
-    height: 100vh;
-  }
-
-  .chatBox{
-    height: 300px;
-    width: 300px;
-  }
-
-  
 }
-

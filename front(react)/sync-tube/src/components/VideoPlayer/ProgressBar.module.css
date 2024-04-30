@@ -1,3 +1,7 @@
+* {
+  font-family: "Ubuntu";
+}
+
 .progressBar {
   width: 1120px;
   height: 10px;
@@ -11,7 +15,7 @@
   align-items: center;
 
   height: 100%;
-  background-color: #0097a7;
+  background-color: #0056b3;
 
   pointer-events: none;
 }
@@ -20,23 +24,19 @@
   width: 10px;
   height: 10px;
 
-  border: 3px solid #ccc;
+  border: 3px solid #0056b3;
   border-radius: 5px;
-  background-color: rgb(0, 0, 0);
+  background-color: #ccc;
 }
 
-@media screen and (max-width:1600px) {
-
-  .progressBar{
+@media screen and (max-width: 1600px) {
+  .progressBar {
     width: 800px;
   }
-  
 }
 
-@media screen and (max-width:900px) {
-
-  .progressBar{
+@media screen and (max-width: 900px) {
+  .progressBar {
     width: 300px;
   }
-  
 }

@@ -1,46 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
-import YouTube, {
-  YouTubeProps,
-} from "react-youtube";
-import { RoomData, RoomState } from "../../Types";
+import React, { useRef, useState } from "react";
+import YouTube, { YouTubeProps } from "react-youtube";
 import { socket } from "../../socket";
 import styles from "./VideoPlayer.module.css";
 import ProgressBar from "./ProgressBar";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useRoom } from "../RoomManager";
 
-function VideoPlayer(props: {
-  videoId: string;
-  roomData: RoomData;
-  setVideoId: React.Dispatch<React.SetStateAction<string>>;
-}) {
+function VideoPlayer() {
   const playerRef = useRef<YouTube>(null);
-  const navigate = useNavigate();
   const [muted, setMuted] = useState<boolean>(false);
   const [duration, setDuration] = useState<number>(0);
-  const [isPaused, setIsPaused] = useState<boolean>(false);
-
-  useEffect(() => {
-    axios
-      .get(`getRoom?roomName=${props.roomData.roomName}`)
-      .then((resp) => {
-        console.log(resp);
-
-        const data: RoomState = resp.data;
-
-        props.setVideoId(data.videoId);
-        setIsPaused(data.isPaused);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
+  const RoomManager = useRoom();
 
   socket.on("play", () => {
     if (playerRef.current) {
       let player = playerRef.current.internalPlayer;
       player.playVideo();
-      setIsPaused(false);
     }
   });
 
@@ -48,7 +22,6 @@ function VideoPlayer(props: {
     if (playerRef.current) {
       let player = playerRef.current.internalPlayer;
       player.pauseVideo();
-      setIsPaused(true);
     }
   });
 
@@ -78,19 +51,19 @@ function VideoPlayer(props: {
   });
 
   const handlePause = () => {
-    socket.send({ event: "pause", roomName: props.roomData.roomName });
+    RoomManager.handlePause();
   };
 
   const handlePlay = () => {
-    socket.send({ event: "play", roomName: props.roomData.roomName });
+    RoomManager.handlePlay();
   };
 
   const handlePlus10 = () => {
-    socket.send({ event: "+10", roomName: props.roomData.roomName });
+    RoomManager.handlePlus10();
   };
 
   const handleMinus10 = () => {
-    socket.send({ event: "-10", roomName: props.roomData.roomName });
+    RoomManager.handleMinus10();
   };
 
   const handleMute = () => {
@@ -120,28 +93,30 @@ function VideoPlayer(props: {
   return (
     <div className={styles.playerBox}>
       <div className={styles.unclickable}>
-        <YouTube
-          className={styles.Player}
-          videoId={props.videoId}
-          opts={opts}
-          ref={playerRef}
-          onReady={(e) => {
-            setDuration(e.target.getDuration());
-          }}
-          onPlay={(e) => {
-            if (isPaused) {
-              e.target.pauseVideo();
-            }
-          }}
-        />
+        {RoomManager.room?.videoId ? (
+          <YouTube
+            className={styles.Player}
+            videoId={RoomManager.room?.videoId}
+            opts={opts}
+            ref={playerRef}
+            onReady={(e) => {
+              setDuration(e.target.getDuration());
+              if (playerRef.current && RoomManager.room?.isPaused) {
+                let player = playerRef.current.internalPlayer;
+                player.pauseVideo();
+              }
+            }}
+          />
+        ) : (
+          <h1>Submit a video first!</h1>
+        )}
       </div>
-      {playerRef.current ? (
+      {playerRef.current && (
         <ProgressBar
           duration={duration}
           player={playerRef.current.internalPlayer}
-          isPaused={isPaused}
         ></ProgressBar>
-      ) : undefined}
+      )}
 
       <div className={styles.controlBox}>
         <button className={styles.btn} onClick={handleMinus10}>
@@ -157,13 +132,12 @@ function VideoPlayer(props: {
           + 10 SEC
         </button>
         <button className={styles.btn} onClick={handleMute}>
-          Mute
+          {muted ? "Unmute" : "Mute"}
         </button>
         <button
-          className={styles.btn}
-          style={{ backgroundColor: "red" }}
+          className={styles.btnRed}
           onClick={() => {
-            navigate("/");
+            RoomManager.leave();
           }}
         >
           Leave

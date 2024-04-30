@@ -1,0 +1,58 @@
+.chatBox {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  width: 300px;
+  height: 726px;
+  justify-content: space-between;
+  font-family:"Ubuntu";
+
+
+}
+
+.messageBox {
+  padding: 10px;
+  height: 100%;
+  overflow-y:auto;
+  box-sizing: border-box;
+}
+
+.message {
+  display: flex;
+  border-radius: 5px;
+  padding: 5px;
+  white-space: pre-line;
+  word-break:break-all;
+  font-size: 14px;
+}
+
+.inputBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #ccc; 
+  height: 50px;
+}
+
+.inputBox input[type="text"] {
+  padding: 8px;
+  font-size: 14px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px;
+}
+
+.inputBox button {
+  padding: 8px 16px;
+  margin-left: 10px;
+  font-size: 14px; 
+  background-color: #007bff;
+  color: #ffffff; 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.inputBox button:hover {
+  background-color: #0056b3; 
+}

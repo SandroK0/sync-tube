@@ -1,29 +1,35 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./HomePage.module.css";
 import axios from "axios";
+import { useRoom } from "../../components/RoomManager";
 
 export default function HomePage() {
   const navigate = useNavigate();
 
-  const nickname = useRef<HTMLInputElement>(null);
-  const roomName = useRef<HTMLInputElement>(null);
+  const userInput = useRef<HTMLInputElement>(null);
+  const roomInput = useRef<HTMLInputElement>(null);
   const [error, setError] = useState<string>("");
 
+  const RoomManager = useRoom();
+
+  useEffect(() => {
+    if (RoomManager.room) {
+      navigate("/room");
+    }
+  }, [RoomManager.room]);
+
   const handleJoin = async () => {
-    if (nickname.current?.value && roomName.current?.value) {
+    if (userInput.current?.value && roomInput.current?.value) {
+      let room = roomInput.current.value;
+      let user = userInput.current.value;
       axios
-        .post("createRoom", {
-          roomName: roomName.current.value,
-          nickName: nickname.current.value,
+        .post("joinRoom", {
+          room,
+          user,
         })
         .then((resp) => {
-          navigate("/room", {
-            state: {
-              nickname: nickname.current?.value,
-              roomName: roomName.current?.value,
-            },
-          });
+          RoomManager.join(room, user);
         })
         .catch((error) => {
           setError(error.response.data.error);
@@ -51,13 +57,13 @@ export default function HomePage() {
             className={styles.input}
             type="text"
             placeholder="Your Nickname*"
-            ref={nickname}
+            ref={userInput}
           />
           <input
             className={styles.input}
             type="text"
             placeholder="Room Name*"
-            ref={roomName}
+            ref={roomInput}
           />
 
           {error ? <h4 style={{ color: "red" }}>{error}*</h4> : undefined}

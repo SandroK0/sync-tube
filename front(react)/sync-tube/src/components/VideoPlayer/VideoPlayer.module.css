@@ -1,23 +1,47 @@
+
+*{
+  font-family:"Ubuntu";
+
+}
+
 .btn {
-  padding: 10px 20px;
-  background-color: #00bcd4;
-  color: #fff;
+  padding: 8px 16px;
+  margin-right: 10px;
+  background-color: #007bff; 
+  color: #ffffff;
   border: none;
   border-radius: 5px;
-  font-size: 12px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-  background-color: #0097a7;
+  background-color: #0056b3; 
+
 }
+
+.btnRed {
+  padding: 8px 16px;
+  margin-right: 10px;
+  background-color: rgb(255, 0, 0); 
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btnRed:hover {
+  background-color: #ac0202; 
+
+}
+
+
 
 .playerBox {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
   gap: 10px;
 }
 
@@ -28,10 +52,13 @@
   gap: 10px;
 
   border: 1px solid #ccc;
-  border-radius: 5px;
   width: 1120px;
   height: 50px;
+  box-sizing: border-box;
 }
+
+
+
 
 .unclickable {
   pointer-events: none;
