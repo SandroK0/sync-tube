@@ -1,0 +1,61 @@
+* {
+    font-family: "Ubuntu";
+}
+
+.btn {
+    padding: 8px 16px;
+    margin-right: 10px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.btnRed {
+    padding: 8px 16px;
+    margin-right: 10px;
+    background-color: rgb(255, 0, 0);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btnRed:hover {
+    background-color: #ac0202;
+}
+
+.playerBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.controlBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    border: 1px solid #ccc;
+    width: 1120px;
+    height: 50px;
+    box-sizing: border-box;
+}
+
+.unclickable {
+    pointer-events: none;
+}
+
+.Player iframe {
+    width: 1120px;
+    height: 630px;
+}
