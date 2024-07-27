@@ -16,6 +16,9 @@ SyncTube is a web application that allows users to watch YouTube videos together
 
 ## Screenshots
 
+![Screenshot 1](./screenshot1.png)
+![Screenshot 2](./screenshot2.png)
+
 ## Installation
 Prerequisites
 
