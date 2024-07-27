@@ -22,12 +22,18 @@ class Room:
     def add_member(self, nickname):
         if nickname not in self.members:
             self.members.append(nickname)
-            socketio.emit('new_member', {'nickname': nickname})
+            socketio.emit('new_member', {'nickname': nickname}, to=self.name)
 
     def remove_member(self, nickname):
         if nickname in self.members:
-            socketio.emit('member_left', {'nickname': nickname})
+            socketio.emit('member_left', {'nickname': nickname}, to=self.name)
             self.members.remove(nickname)
+
+        if self.owner == nickname:
+            if self.members:
+                self.owner = self.members[0]
+                socketio.emit("owner_change", {
+                              'newOwner': self.owner}, to=self.name)
 
     def play_video(self):
         self.is_paused = False

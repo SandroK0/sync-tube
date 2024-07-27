@@ -58,6 +58,7 @@ export default function RoomPage() {
           <div className={styles.memberList}>
             {room.members.map((member, index) => (
               <div key={index}>
+                {member === room.owner && `Owner: `}
                 {member}
                 {member === room.user && "(You)"}
               </div>

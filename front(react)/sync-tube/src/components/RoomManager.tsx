@@ -19,16 +19,16 @@ interface RoomContextType {
 }
 
 const RoomContext = createContext<RoomContextType>({
-  join: () => { },
-  leave: () => { },
-  changeVideo: () => { },
-  sendMessage: () => { },
-  seekTo: () => { },
-  handlePlay: () => { },
-  handlePause: () => { },
-  handlePlus10: () => { },
-  handleMinus10: () => { },
-  updateTime: () => { },
+  join: () => {},
+  leave: () => {},
+  changeVideo: () => {},
+  sendMessage: () => {},
+  seekTo: () => {},
+  handlePlay: () => {},
+  handlePause: () => {},
+  handlePlus10: () => {},
+  handleMinus10: () => {},
+  updateTime: () => {},
   setRoom() {},
   room: null,
 });
@@ -163,6 +163,13 @@ export default function RoomManager({ children }: any) {
         newMembers.splice(elementIndex, 1);
       }
       setRoom({ ...room, members: newMembers });
+    }
+  });
+
+  socket.on("owner_change", (data: { newOwner: string }) => {
+    console.log(data.newOwner)
+    if (room) {
+      setRoom({ ...room, owner: data.newOwner });
     }
   });
 
