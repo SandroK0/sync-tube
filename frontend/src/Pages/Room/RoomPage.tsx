@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { socket } from "../../socket";
+import { socket } from "../../config";
 import styles from "./Room.module.css";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import { useRoom } from "../../components/RoomManager";

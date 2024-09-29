@@ -1,7 +1,9 @@
-import React, { useContext, useState, createContext, useEffect } from "react";
+import { useContext, useState, createContext } from "react";
 import { Message, Room } from "../Types";
 import axios from "axios";
-import { socket } from "../socket";
+import { socket } from "../config";
+
+import { API_URL } from "../config";
 
 interface RoomContextType {
   join: (room: string, user: string) => void;
@@ -38,7 +40,7 @@ export default function RoomManager({ children }: any) {
 
   const join = (room: string, user: string) => {
     axios
-      .get(`getRoom?room=${room}`)
+      .get(`${API_URL}/get_room?room=${room}`)
       .then((resp) => {
         let room = { ...resp.data, user };
         setRoom(room);
@@ -50,7 +52,6 @@ export default function RoomManager({ children }: any) {
 
   const leave = () => {
     if (room) {
-      console.log("Leave!");
       socket.emit("leave_room", { room_name: room.name, user: room.user });
       setRoom(null);
     }
@@ -167,7 +168,7 @@ export default function RoomManager({ children }: any) {
   });
 
   socket.on("owner_change", (data: { newOwner: string }) => {
-    console.log(data.newOwner)
+    console.log(data.newOwner);
     if (room) {
       setRoom({ ...room, owner: data.newOwner });
     }

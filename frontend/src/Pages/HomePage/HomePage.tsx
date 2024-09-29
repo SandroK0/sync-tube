@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./HomePage.module.css";
 import axios from "axios";
 import { useRoom } from "../../components/RoomManager";
+import { API_URL } from "../../config";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ export default function HomePage() {
       let room = roomInput.current.value;
       let user = userInput.current.value;
       axios
-        .post("joinRoom", {
+        .post(`${API_URL}/join_room`, {
           room,
           user,
         })

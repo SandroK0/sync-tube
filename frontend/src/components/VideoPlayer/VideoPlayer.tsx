@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import YouTube, { YouTubeEvent, YouTubeProps } from "react-youtube";
-import { socket } from "../../socket";
+import { socket } from "../../config";
 import styles from "./VideoPlayer.module.css";
 import ProgressBar from "./ProgressBar";
 import { useRoom } from "../RoomManager";

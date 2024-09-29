@@ -103,37 +103,53 @@ def index():
     return jsonify(rooms_data)
 
 
-@app.route("/joinRoom", methods=["POST"])
+import logging
+
+@app.route("/join_room", methods=["POST"])
 def create_room():
-    data = request.json
+    try:
+        data = request.json
 
-    if not data:
-        return jsonify({"error": "No data provided"}), 400
+        if not data:
+            return jsonify({"error": "No data provided"}), 400
 
-    room_name = data.get('room')
-    username = data.get('user')
+        room_name = data.get('room')
+        username = data.get('user')
 
-    if not room_name or not username:
-        return jsonify({"error": "Missing 'room' or 'user' parameter"}), 400
+        if not room_name or not username:
+            return jsonify({"error": "Missing 'room' or 'user' parameter"}), 400
 
-    room: Room | None = room_manager.get_room_by_name(room_name)
+        if not isinstance(room_name, str) or not isinstance(username, str):
+            return jsonify({"error": "Room name and username must be strings"}), 400
 
-    if not room:
-        room_manager.create_room(room_name, username)
-        response_data = {"message": "Room Created!"}
-        return jsonify(response_data), 201
+        if len(room_name) > 50 or len(username) > 30:
+            return jsonify({"error": "Room name or username too long"}), 400
 
-    if username in room.members:
-        response_data = {"error": "Nickname taken in that room!"}
-        return jsonify(response_data), 409
+        room: Room | None = room_manager.get_room_by_name(room_name)
 
-    room.send_message("Joined Room!", username)
-    room.add_member(username)
-    response_data = {"message": "Joining!"}
-    return jsonify(response_data), 202
+        if not room:
+            room = room_manager.create_room(room_name, username)
+            logging.info(f"New room created: {room_name}")
+            response_data = {"message": "Room Created!"}
+            return jsonify(response_data), 201
+
+        if username in room.members:
+            logging.warning(f"Username '{username}' already taken in room '{room_name}'")
+            response_data = {"error": "Nickname taken in that room!"}
+            return jsonify(response_data), 409
+
+        room.send_message("Joined Room!", username)
+        room.add_member(username)
+        logging.info(f"User '{username}' joined room '{room_name}'")
+        response_data = {"message": "Joining!"}
+        return jsonify(response_data), 202
+
+    except Exception as e:
+        logging.error(f"Unexpected error in create_room: {str(e)}")
+        return jsonify({"error": "An unexpected error occurred"}), 500
 
 
-@app.route("/getRoom", methods=["GET"])
+@app.route("/get_room", methods=["GET"])
 def get_room_state():
     room_name = request.args.get("room")
     room: Room | None = room_manager.get_room_by_name(room_name)
@@ -206,5 +222,10 @@ def handle_player_event(data):
                 room.update_time(data['new_time'])
 
 
+
+def create_app():
+    return app
+
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    socketio.run(app, host='0.0.0.0', port=5000, allow_unsafe_werkzeug=True)
+

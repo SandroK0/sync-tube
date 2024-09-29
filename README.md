@@ -4,22 +4,59 @@ SyncTube is a web application that allows users to watch YouTube videos together
 
 ## Features
 
-  - Watch Together: Sync YouTube video playback across multiple users.
-  - Real-time Chat: Chat with other viewers in real-time.
+- Watch Together: Sync YouTube video playback across multiple users.
+- Real-time Chat: Chat with other viewers in real-time.
 
 ## Technology Used
 
-  - Frontend: React with TypeScript
-  - Backend: Flask
-  - Styling: CSS Modules
-  - Real-time Communication: WebSockets using Socket.IO
+- Frontend: React with TypeScript
+- Backend: Flask
+- Styling: CSS Modules
+- Real-time Communication: WebSockets using Socket.IO
 
 ## Screenshots
 
-![Screenshot 1](./screenshot1.png)
-![Screenshot 2](./screenshot2.png)
+![Screenshot 1](./screenshots/screenshot1.png)
+![Screenshot 2](./screenshots/screenshot2.png)
 
-## Installation
+## Run Using Docker
+
+### Prerequisites
+
+- Docker
+- Docker Compose
+
+### Building and Running the Application
+
+1. Clone this repository:
+
+   ```
+    git clone https://github.com/SandroK0/sync-tube.git
+    cd sync-tube
+   ```
+
+2. Build the Docker containers:
+
+   ```
+   docker-compose build
+   ```
+
+3. Start the application:
+
+   ```
+   docker-compose up
+   ```
+
+4. Access the application in your web browser at `http://localhost:3000` (or the appropriate port if you've configured it differently).
+
+To stop the application, press `Ctrl+C` in the terminal where it's running, or run:
+
+```
+docker-compose down
+```
+
+## Installation (Withour Docker)
+
 Prerequisites
 
     Node.js
@@ -34,13 +71,13 @@ bash
     git clone https://github.com/SandroK0/sync-tube.git
     cd sync-tube
 
-## Backend Setup
+### Backend Setup
 
 - Navigate to the backend directory:
 
 bash
 
-    cd back\(flask\)/sync-tube-flask/
+    cd backend
 
 - Create a virtual environment:
 
@@ -66,13 +103,13 @@ bash
 
     flask run
 
-## Frontend Setup
+### Frontend Setup
 
 - Navigate to the frontend directory:
 
 bash
 
-    cd front\(react\)/sync-tube/
+    cd frontend
 
 - Install the required packages:
 
@@ -91,4 +128,3 @@ Usage
     Ensure the backend server is running.
     Ensure the frontend server is running.
     Open your browser and navigate to http://localhost:3000.
-
