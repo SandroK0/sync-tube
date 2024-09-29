@@ -23,7 +23,7 @@ json
 
 ### Create or Join a Room
 
-- URL: /joinRoom
+- URL: /join_room
 
 - Method: POST
 
@@ -45,7 +45,7 @@ json
 
 ### Get Room State
 
-- URL: /getRoom
+- URL: /get_room
 
 - Method: GET
 
