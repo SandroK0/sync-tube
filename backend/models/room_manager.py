@@ -1,5 +1,6 @@
 from .room import Room
 
+
 class RoomManager:
     def __init__(self):
         self.rooms = []

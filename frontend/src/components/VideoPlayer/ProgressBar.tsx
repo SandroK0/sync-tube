@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { YouTubePlayer } from "react-youtube";
 import styles from "./ProgressBar.module.css";
 import { useRoom } from "../RoomManager";

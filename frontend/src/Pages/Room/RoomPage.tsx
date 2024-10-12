@@ -11,7 +11,7 @@ export default function RoomPage() {
 
   useEffect(() => {
     socket.connect();
-    socket.send({ event: "hand_shake", roomName: room?.name });
+    socket.emit("join_room", { room_name: room?.name });
 
     const handleReload = () => {
       leave();

@@ -40,7 +40,7 @@ export default function RoomManager({ children }: any) {
 
   const join = (room: string, user: string) => {
     axios
-      .get(`${API_URL}/get_room?room=${room}`)
+      .get(`${API_URL}/get_room_state?room=${room}`)
       .then((resp) => {
         let room = { ...resp.data, user };
         setRoom(room);
@@ -60,7 +60,7 @@ export default function RoomManager({ children }: any) {
   const changeVideo = (videoId: string) => {
     if (room) {
       socket.send({
-        roomName: room.name,
+        room_name: room.name,
         event: "change_video",
         videoId,
       });
@@ -71,7 +71,7 @@ export default function RoomManager({ children }: any) {
     if (room) {
       socket.send({
         event: "new_message",
-        roomName: room.name,
+        room_name: room.name,
         message: {
           author: room.user,
           message: message,
@@ -82,9 +82,9 @@ export default function RoomManager({ children }: any) {
 
   const updateTime = (new_time: number) => {
     if (room) {
-      socket.emit("playerEvent", {
-        event: "updateTime",
-        roomName: room.name,
+      socket.emit("player_event", {
+        event: "update_time",
+        room_name: room.name,
         new_time,
       });
     }
@@ -92,46 +92,46 @@ export default function RoomManager({ children }: any) {
 
   const seekTo = (seekTime: number) => {
     if (room) {
-      socket.emit("playerEvent", {
-        event: "seekTo",
-        roomName: room.name,
-        currentTime: seekTime,
+      socket.emit("player_event", {
+        event: "seek_to",
+        room_name: room.name,
+        current_time: seekTime,
       });
     }
   };
 
   const handlePause = () => {
     if (room) {
-      socket.emit("playerEvent", {
+      socket.emit("player_event", {
         event: "pause",
-        roomName: room.name,
+        room_name: room.name,
       });
     }
   };
 
   const handlePlay = () => {
     if (room) {
-      socket.emit("playerEvent", {
+      socket.emit("player_event", {
         event: "play",
-        roomName: room.name,
+        room_name: room.name,
       });
     }
   };
 
   const handlePlus10 = () => {
     if (room) {
-      socket.emit("playerEvent", {
+      socket.emit("player_event", {
         event: "+10",
-        roomName: room.name,
+        room_name: room.name,
       });
     }
   };
 
   const handleMinus10 = () => {
     if (room) {
-      socket.emit("playerEvent", {
+      socket.emit("player_event", {
         event: "-10",
-        roomName: room.name,
+        room_name: room.name,
       });
     }
   };
@@ -168,7 +168,6 @@ export default function RoomManager({ children }: any) {
   });
 
   socket.on("owner_change", (data: { newOwner: string }) => {
-    console.log(data.newOwner);
     if (room) {
       setRoom({ ...room, owner: data.newOwner });
     }

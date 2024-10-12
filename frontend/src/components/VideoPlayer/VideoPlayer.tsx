@@ -49,7 +49,7 @@ function VideoPlayer() {
     }
   });
 
-  socket.on("seekTo", async (data: { time: Number }) => {
+  socket.on("seek_to", async (data: { time: Number }) => {
     if (playerRef.current) {
       let player = await playerRef.current.getInternalPlayer();
       player.seekTo(data.time);
