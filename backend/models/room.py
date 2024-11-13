@@ -7,7 +7,7 @@ class Room:
         self.name = name
         self.members = [nickname]
         self.is_paused = True
-        self.video_id = "jTJvyKZDFsY"
+        self.video_id = ""
         self.messages = []
         self.current_time = 0
         self.socketio = socketio
