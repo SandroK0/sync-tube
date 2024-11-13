@@ -1,33 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 
-.body {
-  background-color: #ffffff;
-  color: #000000;
+body {
+  background-color: #121212;
+  color: #e0e0e0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
-  font-family:"Ubuntu";
+  font-family: "Roboto", sans-serif;
 }
-
 
 .container {
   text-align: center;
-  padding: 20px;
-  background-color: #ffffff; /* White background */
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  padding: 30px;
+  background-color: #1f1f1f;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  width: 90%;
+  max-width: 500px;
 }
 
 h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
+  font-size: 28px;
+  color: #f0f0f0;
+  margin-bottom: 12px;
+  font-weight: 500;
 }
 
 .slogan {
-  font-size: 16px;
+  font-size: 18px;
+  color: #b0b0b0;
   margin-bottom: 20px;
+  font-weight: 300;
 }
 
 .form {
@@ -38,30 +44,44 @@ h1 {
 
 .input {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc; /* Light gray border */
-  border-radius: 5px;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #333;
+  color: #e0e0e0;
+}
+
+.input:focus {
+  border-color: #76abae;
+  outline: none;
 }
 
 .error {
-  color: red;
+  color: #ff4d4d;
   font-size: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .btn {
-  padding: 10px 20px;
-  background-color: #007bff; /* Blue button color */
-  color: #ffffff; /* White text color */
+  padding: 12px 25px;
+  background-color: #76abae;
+  color: #ffffff;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-size: 16px;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
 }
 
 .btn:hover {
-  background-color: #0056b3; /* Darker blue color on hover */
+  background-color: #4a8f7f;
+  transform: translateY(-2px);
 }
 
-
+.btn:active {
+  transform: translateY(0);
+}

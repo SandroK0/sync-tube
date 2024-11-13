@@ -30,7 +30,6 @@ def register_socket_events(socketio, room_manager):
         if room_name:
             room = room_manager.get_room_by_name(room_name)
             if room:
-                join_room(room_name)
                 event = data.get("event")
                 if event:
                     if event == 'change_video':
@@ -47,7 +46,6 @@ def register_socket_events(socketio, room_manager):
         if room_name:
             room = room_manager.get_room_by_name(room_name)
             if room:
-                join_room(room_name)
                 event = data.get('event')
                 if event:
                     if event == 'play':

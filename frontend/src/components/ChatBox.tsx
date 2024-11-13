@@ -33,8 +33,7 @@ export default function ChatBox(props: ChatBoxProps) {
         {props.messages.map((element, index) => (
           <div className={styles.message} key={index}>
             <div>
-              <span style={{ color: "blue" }}>{element.author}</span>:{" "}
-              {element.message}
+              <span>{element.author}</span>: {element.message}
             </div>
           </div>
         ))}

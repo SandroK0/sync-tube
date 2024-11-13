@@ -54,7 +54,7 @@ export default function RoomPage() {
           </button>
         </div>
         <div className={styles.roomInfo}>
-          <div>Your room name: {room.name}</div>
+          <div>Room name: {room.name}</div>
           <div className={styles.memberList}>
             {room.members.map((member, index) => (
               <div key={index}>

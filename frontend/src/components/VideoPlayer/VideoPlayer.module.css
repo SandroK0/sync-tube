@@ -1,61 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+
 * {
-    font-family: "Ubuntu";
+  font-family: "Roboto", sans-serif;
 }
 
 .btn {
-    padding: 8px 16px;
-    margin-right: 10px;
-    background-color: #007bff;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  padding: 8px 16px;
+  margin-right: 10px;
+  background-color: #18494b;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
 }
 
 .btn:hover {
-    background-color: #0056b3;
+  background-color: #36685c;
+  transform: translateY(-2px);
 }
 
 .btnRed {
-    padding: 8px 16px;
-    margin-right: 10px;
-    background-color: rgb(255, 0, 0);
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  padding: 8px 16px;
+  margin-right: 10px;
+  background-color: #ff4444;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
 }
 
 .btnRed:hover {
-    background-color: #ac0202;
+  background-color: #ac0202;
+  transform: translateY(-2px);
 }
 
 .playerBox {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .controlBox {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-
-    border: 1px solid #ccc;
-    width: 1120px;
-    height: 50px;
-    box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid #555;
+  width: 1120px;
+  height: 50px;
+  box-sizing: border-box;
+  background-color: #333;
+  color: #e0e0e0;
 }
 
 .unclickable {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 .Player iframe {
-    width: 1120px;
-    height: 630px;
+  width: 1120px;
+  height: 630px;
+  border: none;
 }
