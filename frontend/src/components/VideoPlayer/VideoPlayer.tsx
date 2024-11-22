@@ -85,6 +85,25 @@ function VideoPlayer() {
     }
   };
 
+  const handleFullScreen = async () => {
+    if (playerRef.current) {
+      const player = await playerRef.current.getInternalPlayer();
+
+      // Use YouTube's native fullscreen method
+      player.getIframe().then((iframe: any) => {
+        if (iframe.requestFullscreen) {
+          iframe.requestFullscreen();
+        } else if ((iframe as any).webkitRequestFullscreen) {
+          (iframe as any).webkitRequestFullscreen(); // Safari
+        } else if ((iframe as any).msRequestFullscreen) {
+          (iframe as any).msRequestFullscreen(); // IE/Edge
+        } else {
+          console.error("Fullscreen API is not supported on this browser.");
+        }
+      });
+    }
+  };
+
   const opts: YouTubeProps["opts"] = {
     playerVars: {
       autoplay: 1,
@@ -110,7 +129,7 @@ function VideoPlayer() {
 
               if (playerRef.current && RoomManager.room) {
                 let player = playerRef.current.internalPlayer;
-                player.seekTo(RoomManager.room.current_time)
+                player.seekTo(RoomManager.room.current_time);
                 if (RoomManager.room.isPaused) {
                   player.pauseVideo();
                 }
@@ -129,20 +148,47 @@ function VideoPlayer() {
       )}
 
       <div className={styles.controlBox}>
-        <button className={styles.btn} onClick={handleMinus10}>
+        <button
+          className={styles.btn}
+          onClick={handleMinus10}
+          disabled={!playerRef.current}
+        >
           - 10 SEC
         </button>
-        <button className={styles.btn} onClick={handlePlay}>
+        <button
+          className={styles.btn}
+          onClick={handlePlay}
+          disabled={!playerRef.current}
+        >
           Play
         </button>
-        <button className={styles.btn} onClick={handlePause}>
+        <button
+          className={styles.btn}
+          onClick={handlePause}
+          disabled={!playerRef.current}
+        >
           Pause
         </button>
-        <button className={styles.btn} onClick={handlePlus10}>
+        <button
+          className={styles.btn}
+          onClick={handlePlus10}
+          disabled={!playerRef.current}
+        >
           + 10 SEC
         </button>
-        <button className={styles.btn} onClick={handleMute}>
+        <button
+          className={styles.btn}
+          onClick={handleMute}
+          disabled={!playerRef.current}
+        >
           {muted ? "Unmute" : "Mute"}
+        </button>
+        <button
+          className={styles.btn}
+          onClick={handleFullScreen}
+          disabled={!playerRef.current}
+        >
+          Full
         </button>
         <button
           className={styles.btnRed}

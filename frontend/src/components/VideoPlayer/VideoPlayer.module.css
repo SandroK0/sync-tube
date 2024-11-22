@@ -12,9 +12,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition:
-    background-color 0.3s ease,
-    transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn:hover {
@@ -30,9 +28,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition:
-    background-color 0.3s ease,
-    transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btnRed:hover {

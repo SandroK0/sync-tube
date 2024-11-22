@@ -20,12 +20,17 @@ export default function ChatBox(props: ChatBoxProps) {
   };
 
   useEffect(() => {
+    scrollToBottom();
+  }, [props.messages]);
+
+  const scrollToBottom = () => {
     if (messageBox.current) {
       messageBox.current.scrollTo({
         top: messageBox.current.scrollHeight,
+        behavior: "smooth",
       });
     }
-  });
+  };
 
   return (
     <div className={styles.chatBox}>

@@ -6,10 +6,11 @@ def create_main_blueprint(room_manager, socketio):
 
     @main_bp.route('/')
     def index():
-        rooms_data = {}
-        for room in room_manager.rooms:
-            rooms_data[room.name] = room.to_dict()
-        return jsonify(rooms_data)
+        # rooms_data = {}
+        # for room in room_manager.rooms:
+        #     rooms_data[room.name] = room.to_dict()
+        # return jsonify(rooms_data)
+        return "This is a backend server for SyncTube."
 
     @main_bp.route("/join_room", methods=["POST"])
     def create_room():
