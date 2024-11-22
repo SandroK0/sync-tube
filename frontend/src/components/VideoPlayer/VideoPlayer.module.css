@@ -5,14 +5,23 @@
 }
 
 .btn {
-  padding: 8px 16px;
+  padding: 10px 18px;
   margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #18494b;
   color: #ffffff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
 }
 
 .btn:hover {
@@ -28,7 +37,9 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
 }
 
 .btnRed:hover {

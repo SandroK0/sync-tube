@@ -21,17 +21,17 @@ interface RoomContextType {
 }
 
 const RoomContext = createContext<RoomContextType>({
-  join: () => {},
-  leave: () => {},
-  changeVideo: () => {},
-  sendMessage: () => {},
-  seekTo: () => {},
-  handlePlay: () => {},
-  handlePause: () => {},
-  handlePlus10: () => {},
-  handleMinus10: () => {},
-  updateTime: () => {},
-  setRoom() {},
+  join: () => { },
+  leave: () => { },
+  changeVideo: () => { },
+  sendMessage: () => { },
+  seekTo: () => { },
+  handlePlay: () => { },
+  handlePause: () => { },
+  handlePlus10: () => { },
+  handleMinus10: () => { },
+  updateTime: () => { },
+  setRoom() { },
   room: null,
 });
 

@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { SlSizeFullscreen } from "react-icons/sl";
 import YouTube, { YouTubeEvent, YouTubeProps } from "react-youtube";
 import { socket } from "../../config";
 import styles from "./VideoPlayer.module.css";
@@ -188,7 +189,7 @@ function VideoPlayer() {
           onClick={handleFullScreen}
           disabled={!playerRef.current}
         >
-          Full
+          <SlSizeFullscreen />
         </button>
         <button
           className={styles.btnRed}
