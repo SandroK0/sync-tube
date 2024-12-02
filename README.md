@@ -55,7 +55,7 @@ To stop the application, press `Ctrl+C` in the terminal where it's running, or r
 docker-compose down
 ```
 
-## Installation (Withour Docker)
+## Installation (Without Docker)
 
 Prerequisites
 
