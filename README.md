@@ -1,4 +1,4 @@
-# SyncTube
+# SyncTube [(view)](http://35.242.240.94/)
 
 SyncTube is a web application that allows users to watch YouTube videos together in sync. It is built using React with TypeScript for the frontend and Flask for the backend.
 
