@@ -1,3 +1,4 @@
+from flask import request
 from flask_socketio import join_room, leave_room
 
 
@@ -8,7 +9,6 @@ def register_socket_events(socketio, room_manager):
         user = data.get('user')
 
         if room_name and user:
-
             room = room_manager.get_room_by_name(room_name)
             if room:
                 room.send_message("Left Room!", user)
@@ -20,7 +20,6 @@ def register_socket_events(socketio, room_manager):
     @socketio.on('join_room')
     def handle_join(data):
         room_name = data.get('room_name')
-
         if room_name:
             join_room(room_name)
 
@@ -41,7 +40,6 @@ def register_socket_events(socketio, room_manager):
 
     @socketio.on("player_event")
     def handle_player_event(data):
-
         room_name = data.get('room_name')
         if room_name:
             room = room_manager.get_room_by_name(room_name)

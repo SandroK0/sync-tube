@@ -143,7 +143,7 @@ export default function RoomManager({ children }: any) {
     }
   });
 
-  socket.on("message_recived", (data: Message) => {
+  socket.on("message_received", (data: Message) => {
     if (room) {
       setRoom({ ...room, messages: [...room.messages, data] });
     }

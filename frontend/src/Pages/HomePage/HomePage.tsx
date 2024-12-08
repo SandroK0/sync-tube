@@ -4,6 +4,7 @@ import styles from "./HomePage.module.css";
 import axios from "axios";
 import { useRoom } from "../../components/RoomManager";
 import { API_URL } from "../../config";
+import { useIsMobile } from "../../useIsMobile";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -41,10 +42,33 @@ export default function HomePage() {
   };
 
   document.addEventListener("keydown", (e) => {
-    if (e.key == "Enter") {
+    if (e.key === "Enter") {
       handleJoin();
     }
   });
+
+  const isMobile = useIsMobile();
+  if (isMobile) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          textAlign: "center",
+          padding: "20px",
+        }}
+      >
+        <h1>Mobile Version Not Available</h1>
+        <p>
+          Our application is currently not optimized for mobile devices. Please
+          access the site from a desktop or laptop for the best experience.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.body}>
