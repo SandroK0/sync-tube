@@ -1,0 +1,25 @@
+.progressBar {
+  width: 1120px;
+  height: 10px;
+  background-color: #555;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.progressBarFill {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  height: 100%;
+  background-color: #18494b;
+  border-radius: 5px;
+  pointer-events: none;
+}
+
+.point {
+  width: 10px;
+  height: 10px;
+  border: 3px solid #18494b;
+  border-radius: 5px;
+  background-color: #333;
+}
