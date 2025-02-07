@@ -16,7 +16,7 @@ class RoomManager:
         self.redis_client.set(room_key, json.dumps(room.to_dict()))
 
     def create_room(self, name, user, socketio):
-        new_room = Room(name, user)
+        new_room = Room(name, user, self.redis_client)
         room_data = new_room.to_dict()  # Convert the room to a dictionary
         self.redis_client.set(f"room:{name}", json.dumps(
             room_data))  # Store in Redis
@@ -26,13 +26,8 @@ class RoomManager:
         room_data = self.redis_client.get(f"room:{name}")
         if room_data:
             room_data = json.loads(room_data)
-            room = Room(room_data['name'], room_data['owner'])
-            room.members = room_data['members']
-            room.is_paused = room_data['isPaused']
-            room.video_id = room_data['videoId']
-            room.current_time = room_data['current_time']
-            # Assign last_updated
-            room.last_updated = room_data['last_updated']
+            room = Room(room_data['name'], room_data['owner'], self.redis_client, room_data)
+
             return room
         return None
 

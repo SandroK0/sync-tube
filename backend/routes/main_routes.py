@@ -21,7 +21,6 @@ def create_main_blueprint(room_manager, socketio):
             # Fetch data for each room
             rooms_data = {}
             for room_name in room_names:
-                print(room_name)
                 room_data = room_manager.get_room_by_name(room_name)
                 if room_data:
                     rooms_data[room_name] = room_data.to_dict()
@@ -60,7 +59,6 @@ def create_main_blueprint(room_manager, socketio):
             if not room:
                 # Create a new room if it doesn't exist
                 room = room_manager.create_room(room_name, username, socketio)
-                room_manager.save_room_to_redis(room)  # Save the room to Redis after creation
                 return jsonify({"message": "Room Created!"}), 201
 
             # Check if the username is already taken in the room
@@ -69,13 +67,9 @@ def create_main_blueprint(room_manager, socketio):
 
             room.add_member(username, socketio)  # Add the user to the room
 
-            # Save the updated room to Redis
-            room_manager.save_room_to_redis(room)
-
             return jsonify({"message": "Joining!"}), 202
 
         except Exception as e:
-            # Log the exception for debugging (optional, depending on your logging setup)
             print(f"Error: {e}")
             return jsonify({"error": "An unexpected error occurred"}), 500
 
