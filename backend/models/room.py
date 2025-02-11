@@ -1,4 +1,3 @@
-from flask_socketio import SocketIO
 import time
 import json
 
@@ -6,10 +5,10 @@ import json
 class Room:
     def __init__(self, name, nickname, redis_client, data=None):
 
-        self.owner = nickname 
+        self.owner = nickname
         self.name = name
         self.redis_client = redis_client
-        self.last_updated = time.time()  
+        self.last_updated = time.time()
 
         if data:
             self.reconstrunct_room(data)
@@ -19,9 +18,8 @@ class Room:
             self.video_id = ""
             self.current_time = 0
 
-
         self.save_room_to_redis()
-    
+
     def update_last_activity(self):
         self.last_updated = time.time()
 
@@ -105,10 +103,9 @@ class Room:
         self.save_room_to_redis()
 
     def save_room_to_redis(self):
-        room_key = f"room:{self.name}"  
+        room_key = f"room:{self.name}"
         self.redis_client.set(room_key, json.dumps(self.to_dict()))
 
-        print("Room saved to Redis", self.to_dict())
 
     def reconstrunct_room(self, data):
         self.members = data['members']

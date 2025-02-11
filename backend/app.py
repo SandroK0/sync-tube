@@ -14,7 +14,7 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 CORS(app)
 
 # Initialize Redis client with a specific database (e.g., database index 1)
-redis_client = redis.StrictRedis(host='localhost', port=6379, db=1)
+redis_client = redis.StrictRedis(host='redis', port=6379, db=1)
 
 try:
     redis_client.ping()

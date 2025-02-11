@@ -11,10 +11,6 @@ class RoomManager:
         self.cleanup_interval = 60  # Check every minute
         threading.Thread(target=self.cleanup_task, daemon=True).start()
 
-    def save_room_to_redis(self, room):
-        room_key = f"room:{room.name}"  # Redis key for the room
-        self.redis_client.set(room_key, json.dumps(room.to_dict()))
-
     def create_room(self, name, user, socketio):
         new_room = Room(name, user, self.redis_client)
         room_data = new_room.to_dict()  # Convert the room to a dictionary

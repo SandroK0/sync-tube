@@ -1,4 +1,4 @@
-# SyncTube [(view)](http://35.242.240.94/)
+# SyncTube
 
 SyncTube is a web application that allows users to watch YouTube videos together in sync. It is built using React with TypeScript for the frontend and Flask for the backend.
 
@@ -11,7 +11,7 @@ SyncTube is a web application that allows users to watch YouTube videos together
 
 - Frontend: React with TypeScript
 - Backend: Flask
-- Styling: CSS Modules
+- Storing active rooms: Redis
 - Real-time Communication: WebSockets using Socket.IO
 
 ## Screenshots
@@ -54,77 +54,3 @@ To stop the application, press `Ctrl+C` in the terminal where it's running, or r
 ```
 docker-compose down
 ```
-
-## Installation (Without Docker)
-
-Prerequisites
-
-    Node.js
-    Python
-    npm or yarn
-    pip
-
-- Clone the Repository:
-
-bash
-
-    git clone https://github.com/SandroK0/sync-tube.git
-    cd sync-tube
-
-### Backend Setup
-
-- Navigate to the backend directory:
-
-bash
-
-    cd backend
-
-- Create a virtual environment:
-
-bash
-
-    python -m venv venv
-
-- Activate the virtual environment:
-
-bash
-
-    source venv/bin/activate
-
-- Install the required packages:
-
-bash
-
-    pip install -r requirements.txt
-
-- Start the Flask server:
-
-bash
-
-    flask run
-
-### Frontend Setup
-
-- Navigate to the frontend directory:
-
-bash
-
-    cd frontend
-
-- Install the required packages:
-
-bash
-
-    npm install
-
-- Start the React development server:
-
-bash
-
-    npm start
-
-Usage
-
-    Ensure the backend server is running.
-    Ensure the frontend server is running.
-    Open your browser and navigate to http://localhost:3000.

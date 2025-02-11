@@ -28,8 +28,6 @@ def create_main_blueprint(room_manager, socketio):
             return jsonify(rooms_data), 200
 
         except Exception as e:
-            # Log the error for debugging
-            print(f"Error in /rooms: {e}")
             return jsonify({"error": "An unexpected error occurred"}), 500
 
     @main_bp.route("/join_room", methods=["POST"])
