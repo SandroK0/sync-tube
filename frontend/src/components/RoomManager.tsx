@@ -21,17 +21,17 @@ interface RoomContextType {
 }
 
 const RoomContext = createContext<RoomContextType>({
-  join: () => { },
-  leave: () => { },
-  changeVideo: () => { },
-  sendMessage: () => { },
-  seekTo: () => { },
-  handlePlay: () => { },
-  handlePause: () => { },
-  handlePlus10: () => { },
-  handleMinus10: () => { },
-  updateTime: () => { },
-  setRoom() { },
+  join: () => {},
+  leave: () => {},
+  changeVideo: () => {},
+  sendMessage: () => {},
+  seekTo: () => {},
+  handlePlay: () => {},
+  handlePause: () => {},
+  handlePlus10: () => {},
+  handleMinus10: () => {},
+  updateTime: () => {},
+  setRoom() {},
   room: null,
 });
 
@@ -42,7 +42,8 @@ export default function RoomManager({ children }: any) {
     axios
       .get(`${API_URL}/get_room_state?room=${room}`)
       .then((resp) => {
-        let room = { ...resp.data, user };
+        console.log(resp.data);
+        let room = { ...resp.data, messages: [], user };
         setRoom(room);
       })
       .catch((error) => {

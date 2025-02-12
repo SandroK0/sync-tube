@@ -1,61 +1,65 @@
 from flask import request
 from flask_socketio import join_room, leave_room
+from models.room import Room
+from models.room_manager import RoomManager
 
 
-def register_socket_events(socketio, room_manager):
+def register_socket_events(socketio, room_manager: RoomManager):
     @socketio.on('leave_room')
     def handle_leave(data):
         room_name = data.get('room_name')
         user = data.get('user')
 
         if room_name and user:
-            room = room_manager.get_room_by_name(room_name)
+            room: Room = room_manager.get_room_by_name(room_name)
             if room:
-                room.send_message("Left Room!", user)
-                room.remove_member(user)
+                room.send_message("Left Room!", user, socketio)
+                room.remove_member(user, socketio)
                 leave_room(room_name)
-
-            room_manager.remove_empty_rooms()
+                room_manager.remove_empty_rooms()  
 
     @socketio.on('join_room')
     def handle_join(data):
         room_name = data.get('room_name')
         if room_name:
-            join_room(room_name)
+            room: Room = room_manager.get_room_by_name(room_name)
+            if room:
+                join_room(room_name)
+                room.send_message("Joined Room!", data.get('user'), socketio)
 
     @socketio.on('message')
     def handle_message(data):
-        room_name = data.get('room_name')
+        room_name: str = data.get('room_name')
         if room_name:
-            room = room_manager.get_room_by_name(room_name)
+            room: Room = room_manager.get_room_by_name(room_name)
             if room:
                 event = data.get("event")
                 if event:
                     if event == 'change_video':
                         video_id = data['videoId']
-                        room.change_video(video_id)
+                        room.change_video(video_id, socketio)
                     elif event == 'new_message':
                         room.send_message(
-                            data['message']['message'], data['message']['author'])
+                            data['message']['message'], data['message']['author'], socketio)
 
     @socketio.on("player_event")
     def handle_player_event(data):
-        room_name = data.get('room_name')
+        room_name: str = data.get('room_name')
         if room_name:
-            room = room_manager.get_room_by_name(room_name)
+            room: Room = room_manager.get_room_by_name(room_name)
             if room:
                 event = data.get('event')
                 if event:
                     if event == 'play':
-                        room.play_video()
+                        room.play_video(socketio)
                     elif event == 'pause':
-                        room.pause_video()
+                        room.pause_video(socketio)
                     elif event == '+10':
-                        room.skip_forward()
+                        room.skip_forward(socketio)
                     elif event == '-10':
-                        room.skip_backward()
+                        room.skip_backward(socketio)
                     elif event == 'seek_to':
                         time = data.get('current_time')
-                        room.seek_to(time)
+                        room.seek_to(time, socketio)
                     elif event == 'update_time':
                         room.update_time(data['new_time'])

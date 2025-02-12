@@ -15,6 +15,7 @@ MarkupSafe==2.1.5
 packaging==24.1
 python-engineio==4.9.1
 python-socketio==5.11.4
+redis==5.2.1
 simple-websocket==1.0.0
 Werkzeug==3.0.4
 wsproto==1.2.0
